@@ -5,60 +5,32 @@ import EventDetail from './pages/EventDetail';
 import MyBookings from './pages/MyBookings';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import './pages/Navbar.css';
 
 function Navbar() {
   const { user, logout } = useAuth();
 
   return (
-    <nav style={{ 
-      background: 'white', 
-      borderBottom: '1px solid #ddd', 
-      padding: '1rem 2rem',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    }}>
-      <Link to="/" style={{ fontSize: 20, fontWeight: 700, color: '#4f46e5', textDecoration: 'none' }}>
-        EventBook
-      </Link>
+    <nav className="navbar">
+      <div className="navbar-container">
+        <Link to="/" className="navbar-logo">EventBook</Link>
 
-      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-        {user ? (
-          <>
-            <Link to="/my-bookings" style={{ textDecoration: 'none', color: '#333' }}>
-              My Bookings
-            </Link>
-            <span>Hi, {user.name}</span>
-            <button 
-              onClick={logout}
-              style={{
-                padding: '0.5rem 1rem',
-                background: 'white',
-                border: '1px solid #ddd',
-                borderRadius: 6,
-                cursor: 'pointer'
-              }}
-            >
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to="/login" style={{ textDecoration: 'none', color: '#333' }}>Login</Link>
-            <Link to="/register">
-              <button style={{
-                padding: '0.5rem 1rem',
-                background: '#4f46e5',
-                color: 'white',
-                border: 'none',
-                borderRadius: 6,
-                cursor: 'pointer'
-              }}>
-                Sign Up
-              </button>
-            </Link>
-          </>
-        )}
+        <div className="navbar-menu">
+          {user ? (
+            <div className="navbar-user">
+              <Link to="/my-bookings" className="navbar-link">My Bookings</Link>
+              <span className="navbar-username">Hi, {user.name}</span>
+              <button onClick={logout} className="navbar-logout">Logout</button>
+            </div>
+          ) : (
+            <>
+              <Link to="/login" className="navbar-link">Login</Link>
+              <Link to="/register">
+                <button className="btn btn-primary">Sign Up</button>
+              </Link>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );

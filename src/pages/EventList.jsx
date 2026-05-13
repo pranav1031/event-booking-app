@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api/axios';
+import './EventList.css';
 
 export default function EventList() {
   const [events, setEvents] = useState([]);
@@ -12,43 +13,58 @@ export default function EventList() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div style={{ padding: '2rem' }}>Loading...</div>;
+  if (loading) return <div className="loading">Loading events...</div>;
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '2rem' }}>
-      <h1 style={{ marginBottom: '2rem' }}>Upcoming Events</h1>
-      
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', 
-        gap: '1.5rem' 
-      }}>
-        {events.map(event => (
-          <Link 
-            key={event._id} 
-            to={`/events/${event._id}`}
-            style={{ 
-              border: '1px solid #ddd', 
-              borderRadius: 8, 
-              overflow: 'hidden',
-              textDecoration: 'none',
-              color: 'inherit'
-            }}
-          >
-            <div style={{ padding: '1rem' }}>
-              <h3>{event.title}</h3>
-              <p style={{ color: '#666', fontSize: 14 }}>
-                {new Date(event.date).toLocaleDateString()}
-              </p>
-              <p style={{ color: '#666', fontSize: 14 }}>
-                {event.venue.name}
-              </p>
-              <p style={{ color: '#4f46e5', fontWeight: 600, marginTop: '0.5rem' }}>
-                From ₹{Math.min(...event.ticketTypes.map(t => t.price))}
-              </p>
-            </div>
-          </Link>
-        ))}
+    <div className="event-list">
+      <div className="container">
+        <div className="event-list-header">
+          <h1 className="event-list-title">Discover Events</h1>
+          <p className="event-list-subtitle">Find and book amazing events happening near you</p>
+        </div>
+
+        {events.length === 0 ? (
+          <p className="text-center text-muted">No events available.</p>
+        ) : (
+          <div className="event-grid">
+            {events.map(event => {
+              const minPrice = Math.min(...event.ticketTypes.map(t => t.price));
+              const totalSeats = event.ticketTypes.reduce((sum, t) => sum + t.totalSeats, 0);
+              const bookedSeats = event.ticketTypes.reduce((sum, t) => sum + t.bookedSeats, 0);
+              const available = totalSeats - bookedSeats;
+
+              return (
+                <Link key={event._id} to={`/events/${event._id}`} className="event-card">
+                  <div className="event-card-image">
+                    <span className="event-card-category">{event.category}</span>
+                  </div>
+                  <div className="event-card-content">
+                    <h3 className="event-card-title">{event.title}</h3>
+                    <div className="event-card-date">
+                      <span>📅</span>
+                      <span>{new Date(event.date).toLocaleDateString('en-US', { 
+                        month: 'short', 
+                        day: 'numeric',
+                        year: 'numeric'
+                      })}</span>
+                    </div>
+                    <div className="event-card-location">
+                      <span>📍</span>
+                      <span>{event.venue.name}</span>
+                    </div>
+                    <div className="event-card-footer">
+                      <div>
+                        <div className="event-card-price">₹{minPrice.toLocaleString()}</div>
+                        <div className="event-card-organizer">{available} seats left</div>
+                      </div>
+                      <span className="badge badge-info">{event.status}</span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

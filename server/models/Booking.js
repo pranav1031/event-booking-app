@@ -13,7 +13,7 @@ const BookingSchema = new mongoose.Schema(
       required: true,
     },
     ticketType: { type: String, required: true },
-    quantity: { type: Number, required: true, min: 1, max: 10 },
+    quantity: { type: Number, required: true, min: 1, max: 5 },
     totalAmount: { type: Number, required: true },
     status: {
       type: String,

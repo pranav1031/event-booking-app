@@ -1,0 +1,159 @@
+.event-detail {
+  padding: 3rem 0;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.event-detail-header {
+  margin-bottom: 2rem;
+}
+
+.event-detail-title {
+  font-size: 40px;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.event-detail-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.event-detail-date,
+.event-detail-location {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.event-detail-icon {
+  font-size: 20px;
+}
+
+.event-detail-section {
+  margin-bottom: 3rem;
+}
+
+.event-detail-section-title {
+  font-size: 24px;
+  margin-bottom: 1rem;
+}
+
+.event-detail-description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #374151;
+}
+
+.ticket-selector {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.ticket-tier {
+  border: 2px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: white;
+}
+
+.ticket-tier:hover:not(.ticket-tier-soldout) {
+  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.ticket-tier-selected {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+}
+
+.ticket-tier-soldout {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ticket-tier-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ticket-tier-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.ticket-tier-availability {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.ticket-tier-soldout-text {
+  color: #ef4444;
+  font-weight: 500;
+}
+
+.ticket-tier-price {
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ticket-booking-panel {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  border-radius: 12px;
+}
+
+.quantity-selector {
+  margin-bottom: 1.5rem;
+}
+
+.quantity-input {
+  width: 100px;
+  padding: 0.75rem;
+  background: white;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.booking-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.booking-total {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.book-button {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s;
+}
+
+.book-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
